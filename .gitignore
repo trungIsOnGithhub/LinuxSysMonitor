@@ -1,0 +1,7 @@
+monitor
+*.out
+settings.json
+*.o
+build/*
+target/*
+*.json
