@@ -1,6 +1,6 @@
 # System Monitor
 
-> Developmet using C++17, Ubuntu 20.04 LTS, GNU Make and CMake
+> Developmet using C++17, Ubuntu 20.04 LTS, GNU Make and CMake >= 2.6
 
 ## Description
 This is a simple version of a system monitor program that is simillar to [htop](https://en.wikipedia.org/wiki/Htop. This small project capitalize on creating multiple classes and header files that parse, maniplate, and then display linux system information that can mostly be found in the `/proc` directory on the linux distributions.
