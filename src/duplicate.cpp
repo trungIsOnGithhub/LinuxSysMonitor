@@ -1,25 +1,25 @@
-#include<iostream>
+// #include<iostream>
 
-#define MLEN 16
+// #define MLEN 16
 
-int main() {
-	const int MAXLEN = MLEN;
+// int main() {
+// 	const int MAXLEN = MLEN;
 
-	int numbers[MAXLEN];
+// 	int numbers[MAXLEN];
 	
-	for (int i=0; i<MAXLEN; ++i) {
-		numbers[i] = 0;
-	}
+// 	for (int i=0; i<MAXLEN; ++i) {
+// 		numbers[i] = 0;
+// 	}
 	
-	std::cout<<"[ ";
+// 	std::cout<<"[ ";
 	
-	for (int i=0; i<MAXLEN; ++i) {
-		std::cout<<numbers[i]<<" ,";
-	}
+// 	for (int i=0; i<MAXLEN; ++i) {
+// 		std::cout<<numbers[i]<<" ,";
+// 	}
 	
-	std::cout<<" ]";
+// 	std::cout<<" ]";
 	
-	std::cout<<'\n';
+// 	std::cout<<'\n';
 	
-	return 0;
-}
+// 	return 0;
+// }

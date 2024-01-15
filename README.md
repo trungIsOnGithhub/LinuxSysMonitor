@@ -13,15 +13,17 @@ Install ncurses within your own Linux environment: `sudo apt install libncurses5
 
 1. Clone the project from this repository
 
-2. Build the project: ```make build```
+2. Check if ```ncurses-dev``` is installed, if not, run ```sudo apt-get install libncurses-dev```
 
-3. Run the executable: `./build/monitor`
+3. Build the project: ```make build```
 
-4. Finally, implement the `System`, `Process`, and `Processor` classes, as well as functions within the `LinuxParser` namespace.
+4. Run the executable: `./build/monitor`
+
+5. Finally, implement the `System`, `Process`, and `Processor` classes, as well as functions within the `LinuxParser` namespace.
 
 ## Instructions for compiling the completed program from source
 
-1. Install or update ncurses: `sudo apt install libncurses5-dev libncursesw5-dev`
+1. Install or update ncurses: `sudo apt install libncurses-dev libncursesw-dev`
 
 2. Install [GNU Make](https://www.gnu.org/software/make/) and [CMake](https://cmake.org)
 
