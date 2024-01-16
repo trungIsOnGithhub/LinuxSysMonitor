@@ -10,17 +10,17 @@ namespace LinuxParser {
   const std::string path_proc_dir = "/proc/";
 
   const std::string cmdline_filename = "/cmdline";
-  const std::string kCpuinfoFilename = "/cpuinfo";
-  const std::string kStatusFilename = "/status";
-  const std::string kStatFilename{"/stat"};
-  const std::string kUptimeFilename{"/uptime"};
-  const std::string kMeminfoFilename{"/meminfo"};
-  const std::string kVersionFilename{"/version"};
-  const std::string kOSPath{"/etc/os-release"};
+  const std::string cpuinfo_filename = "/cpuinfo";
+  const std::string status_filename = "/status";
+  const std::string stat_filename{"/stat"};
+  const std::string uptime_filename{"/uptime"};
+  const std::string meminfo_filename{"/meminfo"};
+  const std::string version_filename{"/version"};
+  const std::string os_path{"/etc/os-release"};
   const std::string kPasswordPath{"/etc/passwd"};
 
   // System Functions
-  float MemoryUtilization();
+  float get_mem_usage();
   long get_up_time();
   std::vector<int> Pids();
   int TotalProcesses();

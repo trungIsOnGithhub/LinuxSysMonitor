@@ -41,8 +41,8 @@ std::string System::Kernel() {
     return LinuxParser::Kernel();
 }
 
-float System::MemoryUtilization() {
-    return LinuxParser::MemoryUtilization();
+float System::get_mem_usage() {
+    return LinuxParser::get_mem_usage();
 }
 
 std::string System::OperatingSystem() {

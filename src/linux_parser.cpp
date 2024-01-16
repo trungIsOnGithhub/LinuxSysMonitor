@@ -15,7 +15,7 @@ string LinuxParser::OperatingSystem() {
   string line;
   string key;
   string value;
-  std::ifstream filestream(kOSPath);
+  std::ifstream filestream(os_path);
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
       std::replace(line.begin(), line.end(), ' ', '_');
@@ -37,7 +37,7 @@ string LinuxParser::OperatingSystem() {
 string LinuxParser::Kernel() {
   string line;
   string os, kernel, version;
-  std::ifstream stream(LinuxParser::path_proc_dir + LinuxParser::kVersionFilename);
+  std::ifstream stream(LinuxParser::path_proc_dir + LinuxParser::version_filename);
 
   if (stream.is_open()) {
     std::getline(stream, line);
@@ -70,14 +70,15 @@ vector<int> LinuxParser::Pids() {
 }
 
 // TODO: Read and return the system memory utilization
-float LinuxParser::MemoryUtilization() { 
+float LinuxParser::get_mem_usage() { 
 
   std::vector<float> memo_amounts;
 
-  string memo_type, memo_amount, memo_unit;
-  string line;
-  std::ifstream stream(path_proc_dir + kMeminfoFilename);
-  if(stream.is_open())
+  string memo_type, memo_amount,
+        memo_unit, line;
+  std::ifstream stream(path_proc_dir + meminfo_filename);
+
+  if (stream.is_open())
   {
     while(std::getline(stream, line))
     {
@@ -102,9 +103,8 @@ float LinuxParser::MemoryUtilization() {
 // Done: Read and return the system uptime
 long LinuxParser::get_up_time() 
 { 
-  string val;
-  string line;
-  std::ifstream stream(path_proc_dir + kUptimeFilename);
+  string val, line;
+  std::ifstream stream(path_proc_dir + uptime_filename);
 
   if(stream.is_open())
   {
@@ -139,7 +139,7 @@ long LinuxParser::ActiveJiffies(int pid) {
   string info;
   string line;
   int i = 0;
-  std::ifstream filestream(path_proc_dir + to_string(pid) + kStatFilename);
+  std::ifstream filestream(path_proc_dir + to_string(pid) + stat_filename);
   if(filestream.is_open())
   {
     std::getline(filestream, line);
@@ -198,7 +198,7 @@ long LinuxParser::IdleJiffies() {
 vector<string> LinuxParser::CpuUtilization() { 
   vector<string> cpu_util;
   string line;
-  std::ifstream stream(path_proc_dir + kStatFilename);
+  std::ifstream stream(path_proc_dir + stat_filename);
   if(stream.is_open())
   {
     std::getline(stream, line);
@@ -224,7 +224,7 @@ int LinuxParser::TotalProcesses() {
 
 int num = 0;
 string line;
-std::ifstream stream(path_proc_dir + kStatFilename);
+std::ifstream stream(path_proc_dir + stat_filename);
 
 if(stream.is_open())
 {
@@ -251,7 +251,8 @@ int LinuxParser::RunningProcesses() {
 
   int num = 0;
   string line;
-  std::ifstream stream(path_proc_dir + kStatFilename);
+  std::ifstream stream(path_proc_dir + stat_filename);
+
   if(stream.is_open())
   {
     while(std::getline(stream,line))
@@ -259,8 +260,9 @@ int LinuxParser::RunningProcesses() {
       std::istringstream linestream(line);
       string val;
 
-      linestream>> val;
-      if(val == "procs_running")
+      linestream >> val;
+
+      if (val == "procs_running")
       {
         linestream >> val;
         num = stoi(val);
@@ -274,19 +276,19 @@ int LinuxParser::RunningProcesses() {
  }
 
 // DONE: Read and return the command associated with a process
-string LinuxParser::Command(int pid) { 
-  
+string LinuxParser::Command(int pid) {
+
   string line;
   std::ifstream stream(path_proc_dir + std::to_string(pid) + cmdline_filename);
 
-  if(stream.is_open())
+  if (stream.is_open())
   {
     std::getline(stream,line);
     return line;
   }
-  
+
   return string(); 
-  }
+}
 
 // DONE: Read and return the memory used by a process
 string LinuxParser::Ram(int pid) { 
@@ -294,15 +296,16 @@ string LinuxParser::Ram(int pid) {
   string key, val;
   string line;
   std::stringstream ram;
-  std::ifstream stream(path_proc_dir + std::to_string(pid) + kStatusFilename);
-  if(stream.is_open())
+  std::ifstream stream(path_proc_dir + std::to_string(pid) + status_filename);
+
+  if (stream.is_open())
   {
     while(std::getline(stream,line))
     {
       std::istringstream linestream(line);
       linestream >> key >> val;;
 
-      if(key == "VmSize:")
+      if (key == "VmSize:")
       {
         //Convert to MB:
         ram << std::fixed << std::setprecision(2) << stof(val) / 1000;
@@ -319,7 +322,7 @@ string LinuxParser::Uid(int pid) {
   
   string uid;
   string line;
-  std::ifstream stream(path_proc_dir + to_string(pid) + kStatusFilename);
+  std::ifstream stream(path_proc_dir + to_string(pid) + status_filename);
   if(stream.is_open())
   {
     while(std::getline(stream,line))
@@ -372,7 +375,7 @@ string LinuxParser::User(int pid) {
 long LinuxParser::get_up_time(int pid) { 
   
   string line;
-  std::ifstream stream(path_proc_dir + to_string(pid) + kStatFilename);
+  std::ifstream stream(path_proc_dir + to_string(pid) + stat_filename);
   if(stream.is_open())
   {
     while(std::getline(stream,line))
@@ -398,7 +401,7 @@ long LinuxParser::get_up_time(int pid) {
   {
     vector<string> cpu_util;
     string line;
-    std::ifstream stream(path_proc_dir + to_string(pid) + kStatFilename);
+    std::ifstream stream(path_proc_dir + to_string(pid) + stat_filename);
     if(stream.is_open())
     {
       std::getline(stream, line);

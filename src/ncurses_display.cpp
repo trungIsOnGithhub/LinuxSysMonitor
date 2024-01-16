@@ -49,7 +49,7 @@ void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
 
   mvwprintw(window, row, 10, "");
 
-  wprintw(window, ProgressBar(system.MemoryUtilization()).c_str());
+  wprintw(window, ProgressBar(system.get_mem_usage()).c_str());
   wattroff(window, COLOR_PAIR(1));
 
   mvwprintw(

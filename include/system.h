@@ -12,7 +12,7 @@ class System {
     Processor& Cpu();             
     std::vector<Process>& Processes();
 
-    float MemoryUtilization();
+    float get_mem_usage();
 
     long get_up_time();       
   
